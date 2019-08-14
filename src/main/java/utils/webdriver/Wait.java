@@ -9,6 +9,6 @@ public class Wait {
     }
 
     public static WebDriverWait getWebdriverWait() {
-        return new WebDriverWait(WebDriverInstance.getWebDriver(), 10);
+        return new WebDriverWait(WebDriverInstance.getInstance().getDriver(), 10);
     }
 }

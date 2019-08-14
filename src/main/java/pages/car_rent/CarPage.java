@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 import utils.webdriver.Wait;
+import utils.webdriver.WebDriverInstance;
 
 public class CarPage extends BasePage {
 
@@ -32,11 +33,11 @@ public class CarPage extends BasePage {
     private WebElement dateToInput;
 
     public CarPage() {
-        PageFactory.initElements(getDriver(), this);
+        PageFactory.initElements(WebDriverInstance.getDriverInstance(), this);
     }
 
     public void setDestination(String destination) {
-        new Actions(getDriver()).sendKeys(destination).perform();
+        new Actions(WebDriverInstance.getDriverInstance()).sendKeys(destination).perform();
     }
 
     public void clickSearchButton() {
@@ -52,7 +53,7 @@ public class CarPage extends BasePage {
     }
 
     private WebElement getDestinationOptionElement(String option) {
-        return getDriver().findElement(By.xpath(String.format(destinationOptionXpath, option)));
+        return WebDriverInstance.getDriverInstance().findElement(By.xpath(String.format(destinationOptionXpath, option)));
     }
 
     public void selectDestinationOption(String option) {

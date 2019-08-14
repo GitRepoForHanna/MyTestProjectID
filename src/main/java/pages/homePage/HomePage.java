@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 import utils.Language;
 import utils.webdriver.Wait;
+import utils.webdriver.WebDriverInstance;
 
 public class HomePage extends BasePage {
 
@@ -17,7 +18,7 @@ public class HomePage extends BasePage {
     @FindBy(id = "current_language")
     private WebElement selectLanguagePanel;
 
-    private static String languageTriggerXpath = "//li[@class='%s']//a";
+    private static String languageTriggerXpath = "//li[contains(@class,'%s')]//a";
 
     @FindBy(xpath = "//div[@id='user_form']//li[@data-id='currency_selector']")
     private WebElement currencySelector;
@@ -25,8 +26,11 @@ public class HomePage extends BasePage {
     @FindBy(linkText = "Car rentals")
     private WebElement carRentButton;
 
+    @FindBy(linkText = "Flights")
+    private WebElement flightsButton;
+
     public HomePage() {
-        PageFactory.initElements(getDriver(), this);
+        PageFactory.initElements(WebDriverInstance.getDriverInstance(), this);
     }
 
     private String getLanguageTriggerLocator(Language language) {
@@ -41,7 +45,7 @@ public class HomePage extends BasePage {
     public void selectLanguage(Language language) {
         Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(selectLanguagePanel));
         String languageTriggerLocator = getLanguageTriggerLocator(language);
-        WebElement languageTrigger = getDriver().findElement(By.xpath(languageTriggerLocator));
+        WebElement languageTrigger = WebDriverInstance.getDriverInstance().findElement(By.xpath(languageTriggerLocator));
         Wait.getWebdriverWait().until(ExpectedConditions.elementToBeClickable(languageTrigger));
         languageTrigger.click();
     }
@@ -56,6 +60,10 @@ public class HomePage extends BasePage {
 
     public void clickCarRentButton() {
         carRentButton.click();
+    }
+
+    public void clickFlightsButton() {
+        flightsButton.click();
     }
 
 }
