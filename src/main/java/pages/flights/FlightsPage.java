@@ -45,8 +45,13 @@ public class FlightsPage extends BasePage {
 
     public void selectWhereFromOption(String location) {
         Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(locationPanel));
-        WebElement element = getLocationOptionElement(location);
-        Wait.getWebdriverWait().until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+        try {
+            WebElement element = getLocationOptionElement(location);
+            Wait.getWebdriverWait().until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+        }
+        catch (Exception ex) {
+            throw new RuntimeException("The Where From location point is not set");
+        }
     }
 }

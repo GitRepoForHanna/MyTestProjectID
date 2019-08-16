@@ -1,5 +1,6 @@
 package utils;
 
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -9,17 +10,25 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 public class ScreenShot {
 
-    public static void getScreenShot(WebDriver webdriver, String pathToFile) {
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public static byte[] getScreenShot(WebDriver webdriver, String methodName) {
         TakesScreenshot screenshotTaker = (TakesScreenshot) webdriver;
         File scrFile = screenshotTaker.getScreenshotAs(OutputType.FILE);
-        File resultFile = new File(pathToFile);
+
+        String pathToScreenShot = String.format("/screenshot/%s_%s.png", methodName, new Date().getTime());
+         File resultFile = new File(pathToScreenShot);
         try {
+            Logger.getLogger("ScreenShot").info("Screenshot is captures to" + pathToScreenShot);
             FileUtils.copyFile(scrFile, resultFile);
-        } catch (IOException e) {
+            return FileUtils.readFileToByteArray(resultFile);
+        }
+        catch (IOException e) {
             Logger.getLogger(ScreenShot.class).error(e);
         }
+        return null;
     }
 }
