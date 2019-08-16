@@ -47,7 +47,7 @@ public class CarRent extends BaseTest {
         System.out.println(Thread.currentThread().getName());
         Logger log = Logger.getLogger(this.getClass().getName());
         log.debug("Open Browser");
-        navigateTo(URL);
+        navigateTo(getProperties().getProperty("booking.com.url"));
         log.info("Select Language");
         homePageSteps.selectLanguage(Language.UK);
         log.info("Gp to renting car page");
