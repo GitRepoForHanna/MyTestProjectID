@@ -40,7 +40,7 @@ public class CarRent extends BaseTest {
         instance.closeDriver();
     }
 
-    @Test(dataProvider = "CarRentingData",dataProviderClass = CarRentingDataProvider.class)
+    @Test(dataProvider = "CarRentingData",dataProviderClass = CarRentingDataProvider.class, groups = "Car")
     @Description("Test car renting opportunity")
     public void RentCarInLondon(CarRentingDataTemplate data) throws InterruptedException, NoSuchMethodException {
         System.out.println("RentCarInLondon");

@@ -19,14 +19,14 @@ public class FindFlight extends BaseTest {
 //        instance.getDriver().manage().window().maximize();
 //    }
 
-    @AfterTest
+    @AfterTest(groups = "Flight")
     protected void tearDown() {
         System.out.println("instance " + WebDriverInstance.getInstance().toString());
         System.out.println("getDriver " + WebDriverInstance.getInstance().getDriver());
         WebDriverInstance.getInstance().closeDriver();
     }
 
-    @Test
+    @Test(groups = "Flight")
     @Description("Navigate to booking.com page")
     public void navigateToBooking() throws NoSuchMethodException {
         System.out.println("navigateToBooking");
@@ -34,7 +34,7 @@ public class FindFlight extends BaseTest {
         navigateTo(URL);
     }
 
-    @Test
+    @Test(groups = "Flight")
     @Description("Change Language")
     public void changeLanguage() throws NoSuchMethodException {
         System.out.println("changeLanguage");
@@ -43,7 +43,7 @@ public class FindFlight extends BaseTest {
         homePageSteps.selectLanguage(Language.ITALIA);
     }
 
-    @Test(dataProvider = "NotExistingLocation")
+    @Test(dataProvider = "NotExistingLocation", groups = "Flight")
     @Description("Selecting not existing location from for flight. Constanly failing scenario.")
     public void findFlightWithNotExcistingLocation(String shortLocation, String fullLocation) {
         navigateTo(URL);
