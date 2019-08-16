@@ -1,10 +1,9 @@
 package booking.flights;
 
 import booking.BaseTest;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import io.qameta.allure.Description;
+import org.testng.annotations.*;
+import steps.FlightsPageSteps;
 import steps.HomePageSteps;
 import utils.Language;
 import utils.webdriver.WebDriverInstance;
@@ -12,6 +11,7 @@ import utils.webdriver.WebDriverInstance;
 public class FindFlight extends BaseTest {
 
     HomePageSteps homePageSteps = new HomePageSteps();
+    FlightsPageSteps flightsPageSteps = new FlightsPageSteps();
 
 //    @BeforeTest
 //    protected void setUp() {
@@ -27,6 +27,7 @@ public class FindFlight extends BaseTest {
     }
 
     @Test
+    @Description("Navigate to booking.com page")
     public void navigateToBooking() throws NoSuchMethodException {
         System.out.println("navigateToBooking");
         System.out.println(Thread.currentThread().getName());
@@ -34,11 +35,24 @@ public class FindFlight extends BaseTest {
     }
 
     @Test
+    @Description("Change Language")
     public void changeLanguage() throws NoSuchMethodException {
         System.out.println("changeLanguage");
         System.out.println(Thread.currentThread().getName());
         navigateTo(URL);
         homePageSteps.selectLanguage(Language.ITALIA);
+    }
+
+    @Test(dataProvider = "NotExistingLocation")
+    @Description("Selecting not existing location from for flight. Constanly failing scenario.")
+    public void findFlightWithNotExcistingLocation(String shortLocation, String fullLocation) {
+        navigateTo(URL);
+        flightsPageSteps.setWhereFromPoint(shortLocation, fullLocation);
+    }
+
+    @DataProvider(name = "NotExistingLocation")
+    public Object[][] notExistingLocationDataProvider() {
+        return new Object[][]{{"Pechkino", "Pechkino, Mirski district"}};
     }
 
 }

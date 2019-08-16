@@ -29,14 +29,14 @@ public class CarRent extends BaseTest {
 
     @AfterTest
     protected void tearDown() {
-        if(ITestResult.FAILURE == Reporter.getCurrentTestResult().getStatus()){
-            try{
-                ScreenShot.getScreenShot(instance.getDriver(), "/target/".concat(LocalDate.now().toString().replace(":","-")));
-            }
-            catch (Exception ex){
-                Logger.getLogger(this.getClass().getName()).error(ex);
-            }
-        }
+//        if(ITestResult.FAILURE == Reporter.getCurrentTestResult().getStatus()){
+//            try{
+//                ScreenShot.getScreenShot(instance.getDriver(), "/target/".concat(LocalDate.now().toString().replace(":","-")));
+//            }
+//            catch (Exception ex){
+//                Logger.getLogger(this.getClass().getName()).error(ex);
+//            }
+//        }
         instance.closeDriver();
     }
 
