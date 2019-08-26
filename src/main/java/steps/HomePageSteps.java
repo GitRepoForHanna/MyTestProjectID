@@ -27,4 +27,9 @@ public class HomePageSteps extends BaseSteps{
         new HomePage().clickCarRentButton();
     }
 
+    @Step("Navigation to Flights page")
+    public void clickFlightsButton() {
+        new HomePage().clickFlightsButton();
+    }
+
 }

@@ -3,12 +3,16 @@ package utils.webdriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import utils.PropertiesUtil;
+
+import java.util.Properties;
 
 public class WebDriverInstance {
 
     private static WebDriverInstance webDriverInstance;
     private WebDriver webDriver;
     private static ThreadLocal<WebDriverInstance> instances = new ThreadLocal<>();
+    PropertiesUtil propertiesUtil = new PropertiesUtil("src//test/resources/config.properties");
 
     private WebDriver initDriver() {
         System.out.println("init driver");

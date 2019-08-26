@@ -37,6 +37,7 @@ public class CarPage extends BasePage {
     }
 
     public void setDestination(String destination) {
+        destinationInput.click();
         new Actions(WebDriverInstance.getDriverInstance()).sendKeys(destination).perform();
     }
 

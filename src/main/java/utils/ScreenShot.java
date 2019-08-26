@@ -20,7 +20,7 @@ public class ScreenShot {
         File scrFile = screenshotTaker.getScreenshotAs(OutputType.FILE);
 
         String pathToScreenShot = String.format("/screenshot/%s_%s.png", methodName, new Date().getTime());
-         File resultFile = new File(pathToScreenShot);
+        File resultFile = new File(pathToScreenShot);
         try {
             Logger.getLogger("ScreenShot").info("Screenshot is captures to" + pathToScreenShot);
             FileUtils.copyFile(scrFile, resultFile);

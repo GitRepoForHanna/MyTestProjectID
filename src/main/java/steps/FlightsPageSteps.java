@@ -12,7 +12,14 @@ public class FlightsPageSteps extends BaseSteps {
     public void setWhereFromPoint(String shortNameLocation, String fullNameLocation) {
         FlightsPage flightPage = new FlightsPage();
         flightPage.setWhereFromPoint(shortNameLocation);
-        flightPage.selectWhereFromOption(fullNameLocation);
+        flightPage.selectLocationOption(fullNameLocation);
+    }
+
+    @Step("Type location to: {0} - in short, {1} - full location name")
+    public void setWhereToPoint(String shortNameLocation, String fullNameLocation) {
+        FlightsPage flightPage = new FlightsPage();
+        flightPage.setWhereToPoint(shortNameLocation);
+        flightPage.selectLocationOption(fullNameLocation);
     }
 
 

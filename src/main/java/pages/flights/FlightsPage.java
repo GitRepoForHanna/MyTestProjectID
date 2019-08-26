@@ -15,7 +15,7 @@ public class FlightsPage extends BasePage {
     @FindBy(xpath = "//input[@aria-label='Flight origin input' and @placeholder='From where?']")
     WebElement fromWhereInput;
 
-    @FindBy(xpath = "//input[@aria-label='Flight origin input' and @placeholder='To where?']")
+    @FindBy(xpath = "//input[@aria-label='Flight destination input' and @placeholder='To where?']")
     WebElement toWhereInput;
 
     @FindBy(xpath = "//button[@title='Search flights']")
@@ -35,7 +35,8 @@ public class FlightsPage extends BasePage {
     }
 
     public void setWhereFromPoint(String locationFrom) {
-        new Actions(WebDriverInstance.getDriverInstance()).sendKeys(locationFrom).perform();
+        fromWhereInput.clear();
+        fromWhereInput.sendKeys(locationFrom);
     }
 
     private WebElement getLocationOptionElement(String option) {
@@ -43,7 +44,7 @@ public class FlightsPage extends BasePage {
         return WebDriverInstance.getDriverInstance().findElement(By.xpath(locator));
     }
 
-    public void selectWhereFromOption(String location) {
+    public void selectLocationOption(String location) {
         Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(locationPanel));
         try {
             WebElement element = getLocationOptionElement(location);
@@ -51,7 +52,13 @@ public class FlightsPage extends BasePage {
             element.click();
         }
         catch (Exception ex) {
-            throw new RuntimeException("The Where From location point is not set");
+            throw new RuntimeException("The Location point is not set");
         }
     }
+
+    public void setWhereToPoint(String locationTo) {
+        toWhereInput.clear();
+        toWhereInput.sendKeys(locationTo);
+    }
+
 }

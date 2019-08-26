@@ -31,7 +31,7 @@ public class FindFlight extends BaseTest {
     public void navigateToBooking() throws NoSuchMethodException {
         System.out.println("navigateToBooking");
         System.out.println(Thread.currentThread().getName());
-        navigateTo(getProperties().getProperty("booking.com.url"));
+        navigateTo(properties.getProperty("booking.com.url"));
     }
 
     @Test(groups = "Flight")
@@ -39,14 +39,25 @@ public class FindFlight extends BaseTest {
     public void changeLanguage() throws NoSuchMethodException {
         System.out.println("changeLanguage");
         System.out.println(Thread.currentThread().getName());
-        navigateTo(getProperties().getProperty("booking.com.url"));
+        navigateTo(properties.getProperty("booking.com.url"));
         homePageSteps.selectLanguage(Language.ITALIA);
     }
 
+    @Test(groups = "Flight")
+    @Description("Select the flight for 1 week")
+    public void findWeekFlight() throws InterruptedException {
+        navigateTo(getResourceBundle("configfile").getString("booking.com.url"));
+        homePageSteps.clickFlightsButton();
+        flightsPageSteps.setWhereFromPoint("Izmir", "Chios (JKH)");
+        flightsPageSteps.setWhereToPoint("Rhodes", "Rhodes (RHO)");
+        Thread.sleep(4000);
+    }
+
     @Test(dataProvider = "NotExistingLocation", groups = "Flight")
-    @Description("Selecting not existing location from for flight. Constanly failing scenario.")
-    public void findFlightWithNotExcistingLocation(String shortLocation, String fullLocation) {
-        navigateTo(getProperties().getProperty("booking.com.url"));
+    @Description("Selecting not existing location from for flight. Constantly failing scenario.")
+    public void findFlightWithNotExistingLocation(String shortLocation, String fullLocation) {
+        navigateTo(properties.getProperty("booking.com.url"));
+        homePageSteps.clickFlightsButton();
         flightsPageSteps.setWhereFromPoint(shortLocation, fullLocation);
     }
 

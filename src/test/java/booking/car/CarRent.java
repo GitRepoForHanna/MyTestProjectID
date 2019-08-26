@@ -17,6 +17,7 @@ import utils.dataProviders.CarRentingDataTemplate;
 import utils.webdriver.WebDriverInstance;
 
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 
 public class CarRent extends BaseTest {
@@ -40,17 +41,18 @@ public class CarRent extends BaseTest {
         instance.closeDriver();
     }
 
-    @Test(dataProvider = "CarRentingData",dataProviderClass = CarRentingDataProvider.class, groups = "Car")
+    @Test(dataProvider = "CarRentingData", dataProviderClass = CarRentingDataProvider.class, groups = "Car")
     @Description("Test car renting opportunity")
     public void RentCarInLondon(CarRentingDataTemplate data) throws InterruptedException, NoSuchMethodException {
         System.out.println("RentCarInLondon");
         System.out.println(Thread.currentThread().getName());
         Logger log = Logger.getLogger(this.getClass().getName());
         log.debug("Open Browser");
-        navigateTo(getProperties().getProperty("booking.com.url"));
+//        navigateTo(properties.getProperty("booking.com.url"));
+        navigateTo(getResourceBundle("configfile").getString("booking.com.url"));
         log.info("Select Language");
         homePageSteps.selectLanguage(Language.UK);
-        log.info("Gp to renting car page");
+        log.info("Go to renting car page");
         homePageSteps.clickCarRentButton();
         log.info("Setting car renting parameters");
         carPageSteps.setDestination(data.getShortDestination(), data.getDestination());

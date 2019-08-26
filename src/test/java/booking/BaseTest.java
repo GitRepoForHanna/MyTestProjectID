@@ -1,6 +1,8 @@
 package booking;
 
 import org.apache.log4j.Logger;
+import org.apache.sling.api.resource.*;
+import org.apache.sling.spi.resource.provider.ResourceProvider;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
@@ -8,11 +10,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import steps.CarPageSteps;
 import steps.HomePageSteps;
+import utils.PropertiesUtil;
 import utils.webdriver.WebDriverInstance;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class BaseTest {
 
@@ -24,27 +28,27 @@ public class BaseTest {
     protected WebDriverInstance instance;
     private InputStream input;
 
-    private Properties properties = new Properties();
+    protected PropertiesUtil properties = new PropertiesUtil("src//test/resources/config.properties");
 
-    protected Properties getProperties() {
-        return properties;
-    }
+    protected ResourceBundle resourceBundle;
+//    protected ResourceProvider resourceProvider;
+    ResourceResolverFactory resourceResolverFactory;
 
     public BaseTest() {
         System.out.println("BaseTest Constructor");
-        try {
-            input = new FileInputStream("src//test/resources/config.properties");
-            properties.load(input);
-        }
-        catch(Exception ex) {
-            Logger.getLogger(this.getClass().getName()).error("Properties are not loaded");
-        }
-
         WebDriverInstance.getDriverInstance();
-        System.out.println("Root path -> " + Thread.currentThread().getContextClassLoader().getResource("").getPath());
+        try {
+            ResourceResolver resolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
+            Resource resource = resolver.getResource("src//test/resources/configfile");
+        }
+        catch (LoginException ex) {
+
+        }
     }
 
-
+    public ResourceBundle getResourceBundle(String resourceBundleName) {
+        return  ResourceBundle.getBundle(resourceBundleName);
+    }
 
 
 //    protected void setUp() {
