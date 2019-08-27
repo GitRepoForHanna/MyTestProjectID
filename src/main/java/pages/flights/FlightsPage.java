@@ -2,13 +2,12 @@ package pages.flights;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 import utils.webdriver.Wait;
-import utils.webdriver.WebDriverInstance;
+import utils.webdriver.WebDriverSingletoneInstance;
 
 public class FlightsPage extends BasePage {
 
@@ -27,7 +26,7 @@ public class FlightsPage extends BasePage {
     private String locationOptionXpath = "//li[@data-short-name='%s' and @role='option']";
 
     public FlightsPage() {
-        PageFactory.initElements(WebDriverInstance.getDriverInstance(), this);
+        PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
     }
 
     public void clickSearchButton() {
@@ -41,7 +40,7 @@ public class FlightsPage extends BasePage {
 
     private WebElement getLocationOptionElement(String option) {
         String locator = String.format(locationOptionXpath, option);
-        return WebDriverInstance.getDriverInstance().findElement(By.xpath(locator));
+        return WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(locator));
     }
 
     public void selectLocationOption(String location) {

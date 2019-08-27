@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 import utils.Language;
 import utils.webdriver.Wait;
-import utils.webdriver.WebDriverInstance;
+import utils.webdriver.WebDriverSingletoneInstance;
 
 public class HomePage extends BasePage {
 
@@ -30,7 +30,7 @@ public class HomePage extends BasePage {
     private WebElement flightsButton;
 
     public HomePage() {
-        PageFactory.initElements(WebDriverInstance.getDriverInstance(), this);
+        PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
     }
 
     private String getLanguageTriggerLocator(Language language) {
@@ -45,7 +45,7 @@ public class HomePage extends BasePage {
     public void selectLanguage(Language language) {
         Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(selectLanguagePanel));
         String languageTriggerLocator = getLanguageTriggerLocator(language);
-        WebElement languageTrigger = WebDriverInstance.getDriverInstance().findElement(By.xpath(languageTriggerLocator));
+        WebElement languageTrigger = WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(languageTriggerLocator));
         Wait.getWebdriverWait().until(ExpectedConditions.elementToBeClickable(languageTrigger));
         languageTrigger.click();
     }

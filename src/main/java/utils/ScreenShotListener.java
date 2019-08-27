@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import utils.webdriver.WebDriverInstance;
+import utils.webdriver.WebDriverSingletoneInstance;
 
 public class ScreenShotListener implements ITestListener {
 
@@ -21,7 +21,7 @@ public class ScreenShotListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         try {
-            ScreenShot.getScreenShot(WebDriverInstance.getInstance().getDriver(), result.getName().toString());
+            ScreenShot.getScreenShot(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), result.getName().toString());
         }
         catch (Exception ex) {
             Logger.getLogger(result.getClass().getName()).error(ex);
