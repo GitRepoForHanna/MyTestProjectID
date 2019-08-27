@@ -18,7 +18,6 @@ public class WebDriverSingletoneInstance {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         webDriver = new ChromeDriver(options);
-        System.out.println("[" + Thread.currentThread().getName() + "] - init webdriver: " + webDriver);
         webDriver.manage().window().maximize();
         return webDriver;
     }
@@ -26,7 +25,6 @@ public class WebDriverSingletoneInstance {
     private static ThreadLocal<WebDriverSingletoneInstance> threadLocal = new ThreadLocal<WebDriverSingletoneInstance>(){
         @Override
         protected WebDriverSingletoneInstance initialValue() {
-            System.out.println("initialValue for thread: " + Thread.currentThread().getName());
             if (null == instance){
                 instance = new WebDriverSingletoneInstance();
             }
@@ -43,7 +41,6 @@ public class WebDriverSingletoneInstance {
     }
 
     public void closeDriver() {
-        System.out.println("[" + Thread.currentThread().getName() + "] - closing");
         getWebDriverInstance().close();
         getWebDriverInstance().quit();
     }

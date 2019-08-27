@@ -93,7 +93,6 @@ public class DateCalendarPage extends BasePage {
                 }
             }
         }
-        System.out.println("Locator to " + getDateTableToCellLocator(date));
         getDateTableCell(getDateTableToCellLocator(date)).click();
         Thread.sleep(4000);
     }

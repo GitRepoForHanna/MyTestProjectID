@@ -29,7 +29,7 @@ public class FindFlight extends BaseTest {
     @Test(groups = "Flight")
     @Description("Select the flight for 1 week")
     public void findWeekFlight() throws InterruptedException {
-        navigateTo(getResourceBundle("configfile").getString("booking.com.url"));
+        navigateTo(getResourceBundle("config").getString("booking.com.url"));
         homePageSteps.clickFlightsButton();
         flightsPageSteps.setWhereFromPoint("Izmir", "Chios (JKH)");
         flightsPageSteps.setWhereToPoint("Rhodes", "Rhodes (RHO)");

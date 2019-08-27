@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<!--<suite thread-count="1" verbose="10" name="BookingSuite" annotations="JDK" parallel="tests" >-->
-    <suite name="BookingSuite" annotations="JDK" >
+<suite thread-count="2" verbose="10" name="BookingSuite" annotations="JDK" parallel="tests" >
+<!--    <suite name="BookingSuite" annotations="JDK" >-->
     <listeners>
         <listener class-name="utils.ScreenShotListener"/>
     </listeners>
