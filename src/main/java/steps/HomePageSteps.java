@@ -6,8 +6,6 @@ import pages.homePage.HomePage;
 
 public class HomePageSteps extends BaseSteps{
 
-//    HomePage homePage = new HomePage();
-
     @Step("Select Language {0}")
     public void selectLanguage(Language language) {
         HomePage homePage = new HomePage();

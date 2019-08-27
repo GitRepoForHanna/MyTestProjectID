@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
 import utils.UIAttributes;
-import utils.webdriver.WebDriverInstance;
+import utils.webdriver.WebDriverSingletoneInstance;
 
 import java.time.LocalDate;
 
@@ -28,7 +28,7 @@ public class DateCalendarPage extends BasePage {
     private static String dateTableCellXpath = "//div[contains(@class,'%s')]//th[contains(text(),'%s %d')]//ancestor::table[1]//td/span[contains(text(),'%d')]";
 
     public DateCalendarPage() {
-        PageFactory.initElements(WebDriverInstance.getDriverInstance(), this);
+        PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
     }
 
     public LocalDate getCurrentData() {
@@ -42,7 +42,7 @@ public class DateCalendarPage extends BasePage {
     }
 
     public WebElement getDateTableElement(String locator) {
-        return WebDriverInstance.getDriverInstance().findElement(By.xpath(locator));
+        return WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(locator));
     }
 
     public String getDateTableToLocator(LocalDate date) {
@@ -66,13 +66,13 @@ public class DateCalendarPage extends BasePage {
     }
 
     public WebElement getDateTableCell(String locator) {
-        return WebDriverInstance.getDriverInstance().findElement(By.xpath(locator));
+        return WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(locator));
     }
 
     public void setDateFrom(LocalDate date) throws InterruptedException {
         if (date.isAfter(LocalDate.now())) {
             String tableLocator = getDateFromTableLocator(date);
-            if(WebDriverInstance.getDriverInstance().findElements(By.xpath(tableLocator)).size() == 1) {
+            if(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElements(By.xpath(tableLocator)).size() == 1) {
                 while (!getDateTableElement(tableLocator).isEnabled()) {
                     dateFromFurtherButton.click();
                 }
@@ -87,12 +87,13 @@ public class DateCalendarPage extends BasePage {
     public void setDateTo(LocalDate date) throws InterruptedException {
         if (date.isAfter(LocalDate.now())) {
             String tableLocator = getDateTableToLocator(date);
-            if(WebDriverInstance.getDriverInstance().findElements(By.xpath(getDateTableToLocator(date))).size() == 1) {
+            if(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElements(By.xpath(getDateTableToLocator(date))).size() == 1) {
                 while (!getDateTableElement(tableLocator).isEnabled()) {
                     dateFromFurtherButton.click();
                 }
             }
         }
+        System.out.println("Locator to " + getDateTableToCellLocator(date));
         getDateTableCell(getDateTableToCellLocator(date)).click();
         Thread.sleep(4000);
     }

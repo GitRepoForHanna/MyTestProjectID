@@ -1,17 +1,13 @@
 package pages.car_rent;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 import utils.webdriver.Wait;
-import utils.webdriver.WebDriverInstance;
+import utils.webdriver.WebDriverSingletoneInstance;
 
 public class CarPage extends BasePage {
 
@@ -33,12 +29,11 @@ public class CarPage extends BasePage {
     private WebElement dateToInput;
 
     public CarPage() {
-        PageFactory.initElements(WebDriverInstance.getDriverInstance(), this);
+        PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
     }
 
     public void setDestination(String destination) {
-        destinationInput.click();
-        new Actions(WebDriverInstance.getDriverInstance()).sendKeys(destination).perform();
+        destinationInput.sendKeys(destination);
     }
 
     public void clickSearchButton() {
@@ -54,14 +49,20 @@ public class CarPage extends BasePage {
     }
 
     private WebElement getDestinationOptionElement(String option) {
-        return WebDriverInstance.getDriverInstance().findElement(By.xpath(String.format(destinationOptionXpath, option)));
+        return WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(String.format(destinationOptionXpath, option)));
     }
 
     public void selectDestinationOption(String option) {
-        Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(suggestedDestinationsPanel));
-        WebElement element = getDestinationOptionElement(option);
-        Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(element));
-        element.click();
+        try {
+            Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(suggestedDestinationsPanel));
+            WebElement element = getDestinationOptionElement(option);
+            Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(element));
+            element.click();
+        }
+        catch (Exception ex){
+            throw new RuntimeException(String.format("Destination option %s was not founded", option));
+        }
+
     }
 
 }

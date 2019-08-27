@@ -1,10 +1,7 @@
 package steps;
 
-import io.qameta.allure.Link;
 import io.qameta.allure.Step;
-import org.apache.log4j.Logger;
 import pages.flights.FlightsPage;
-import utils.ScreenShot;
 
 public class FlightsPageSteps extends BaseSteps {
 

@@ -1,6 +1,6 @@
 package utils.dataProviders;
 
-public class CarRentingDataTemplate {
+public class CarRentingData {
     private String shortDestination;
     private String destination;
     private int checkInYear;
@@ -10,15 +10,15 @@ public class CarRentingDataTemplate {
     private int checkInDay;
     private int checkOutDay;
 
-    public CarRentingDataTemplate(String shortDestination, String destination, int checkInYear, int checkInMonth, int checkInDay, int checkOutYear, int checkOutMonth, int checkOutDay) {
-        this.shortDestination = shortDestination;
-        this.destination = destination;
-        this.checkInYear = checkInYear;
-        this.checkInMonth = checkInMonth;
-        this.checkInDay = checkInDay;
-        this.checkOutYear = checkOutYear;
-        this.checkOutMonth = checkOutMonth;
-        this.checkOutDay = checkOutDay;
+    public CarRentingData(CarRentingDataBuilder builder) {
+        this.shortDestination = builder.getShortDestination();
+        this.destination = builder.getDestination();
+        this.checkInYear = builder.getCheckInYear();
+        this.checkInMonth = builder.getCheckInMonth();
+        this.checkInDay = builder.getCheckInDay();
+        this.checkOutYear = builder.getCheckOutYear();
+        this.checkOutMonth = builder.getCheckOutMonth();
+        this.checkOutDay = builder.getCheckOutDay();
     }
 
     public String getShortDestination() {
