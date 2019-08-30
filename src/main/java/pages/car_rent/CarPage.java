@@ -1,11 +1,13 @@
 package pages.car_rent;
 
+import model.components.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
+import utils.CustomFieldDecorator;
 import utils.webdriver.Wait;
 import utils.webdriver.WebDriverSingletoneInstance;
 
@@ -20,7 +22,7 @@ public class CarPage extends BasePage {
     private WebElement suggestedDestinationsPanel;
 
     @FindBy(className = "sb-searchbox__button")
-    private WebElement searchButton;
+    private Button searchButton;
 
     @FindBy(xpath = "//div[contains(@class,'xp__dates__checkin')]//button[@aria-label=\"Open calendar\"]")
     private WebElement dateFromInput;
@@ -29,7 +31,7 @@ public class CarPage extends BasePage {
     private WebElement dateToInput;
 
     public CarPage() {
-        PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
+        PageFactory.initElements(new CustomFieldDecorator(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance()), this);
     }
 
     public void setDestination(String destination) {

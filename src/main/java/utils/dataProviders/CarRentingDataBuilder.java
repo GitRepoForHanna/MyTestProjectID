@@ -46,42 +46,42 @@ public class CarRentingDataBuilder {
         return checkOutDay;
     }
 
-    public CarRentingDataBuilder shortDestination(String shortDestination) {
+    public CarRentingDataBuilder withShortDestination(String shortDestination) {
         this.shortDestination = shortDestination;
         return this;
     }
 
-    public CarRentingDataBuilder fullDestination(String fullDestination) {
+    public CarRentingDataBuilder withFullDestination(String fullDestination) {
         this.destination = fullDestination;
         return this;
     }
 
-    public CarRentingDataBuilder checkInYear(int checkInYear) {
+    public CarRentingDataBuilder withCheckInYear(int checkInYear) {
         this.checkInYear = checkInYear;
         return this;
     }
 
-    public CarRentingDataBuilder checkOutYear(int checkOutYear) {
+    public CarRentingDataBuilder withCheckOutYear(int checkOutYear) {
         this.checkOutYear = checkOutYear;
         return this;
     }
 
-    public CarRentingDataBuilder checkInMonth(int checkInMonth) {
+    public CarRentingDataBuilder withCheckInMonth(int checkInMonth) {
         this.checkInMonth = checkInMonth;
         return this;
     }
 
-    public CarRentingDataBuilder checkOutMonth(int checkOutMonth) {
+    public CarRentingDataBuilder withCheckOutMonth(int checkOutMonth) {
         this.checkOutMonth = checkOutMonth;
         return this;
     }
 
-    public CarRentingDataBuilder checkInDay(int checkInDay) {
+    public CarRentingDataBuilder withCheckInDay(int checkInDay) {
         this.checkInDay = checkInDay;
         return this;
     }
 
-    public CarRentingDataBuilder getCheckOutDay(int checkOutDay) {
+    public CarRentingDataBuilder withCheckOutDay(int checkOutDay) {
         this.checkOutDay = checkOutDay;
         return this;
     }

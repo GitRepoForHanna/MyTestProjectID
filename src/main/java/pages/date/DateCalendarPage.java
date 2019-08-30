@@ -15,13 +15,13 @@ import java.time.LocalDate;
 public class DateCalendarPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'xp__dates__checkin')]//div[contains(@class,'c2-button-further')]")
-    private WebElement dateFromFurtherButton;
+    private WebElement furtherButton;
 
     @FindBy(xpath = "//div[contains(@class,'xp__dates__checkin')]//div[contains(@class,'c2-button-earlier')]")
-    private WebElement dateFromEarlierButton;
+    private WebElement earlierButton;
 
-    @FindBy(xpath = "//div[contains(@class,'xp__dates__checkin')]//div[contains(@class,'c2-button-earlier')]")
-    private WebElement dateFromDay;
+//    @FindBy(xpath = "//div[contains(@class,'xp__dates__checkin')]//div[contains(@class,'c2-button-earlier')]")
+//    private WebElement dateFromDay;
 
     private static String dateTableHeaderXpath = "//div[contains(@class,'%1s')]//table//th[text()='%2s %d']";
 
@@ -35,7 +35,7 @@ public class DateCalendarPage extends BasePage {
         return LocalDate.now();
     }
 
-    public String getDateFromTableLocator(LocalDate date) {
+    public String getStartDatePickerLocator(LocalDate date) {
         String monthName = date.getMonth().name();
         int yearFrom = date.getYear();
         return String.format(dateTableHeaderXpath, UIAttributes.DATE_FROM_CLASS, StringUtils.capitalize(monthName.toLowerCase()), yearFrom);
@@ -71,10 +71,10 @@ public class DateCalendarPage extends BasePage {
 
     public void setDateFrom(LocalDate date) throws InterruptedException {
         if (date.isAfter(LocalDate.now())) {
-            String tableLocator = getDateFromTableLocator(date);
-            if(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElements(By.xpath(tableLocator)).size() == 1) {
-                while (!getDateTableElement(tableLocator).isEnabled()) {
-                    dateFromFurtherButton.click();
+            String pickerLocator = getStartDatePickerLocator(date);
+            if(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElements(By.xpath(pickerLocator)).size() == 1) {
+                while (!getDateTableElement(pickerLocator).isEnabled()) {
+                    furtherButton.click();
                 }
             }
             else {
@@ -89,7 +89,7 @@ public class DateCalendarPage extends BasePage {
             String tableLocator = getDateTableToLocator(date);
             if(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElements(By.xpath(getDateTableToLocator(date))).size() == 1) {
                 while (!getDateTableElement(tableLocator).isEnabled()) {
-                    dateFromFurtherButton.click();
+                    furtherButton.click();
                 }
             }
         }

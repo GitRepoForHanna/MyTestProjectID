@@ -1,11 +1,14 @@
 package pages.homePage;
 
+import model.components.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
+import utils.CustomFieldDecorator;
+import utils.HighlightElement;
 import utils.Language;
 import utils.webdriver.Wait;
 import utils.webdriver.WebDriverSingletoneInstance;
@@ -13,7 +16,7 @@ import utils.webdriver.WebDriverSingletoneInstance;
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "//div[@id='user_form']//li[@data-id='language_selector']")
-    private WebElement languageSelector;
+    private Button languageSelector;
 
     @FindBy(id = "current_language")
     private WebElement selectLanguagePanel;
@@ -24,13 +27,13 @@ public class HomePage extends BasePage {
     private WebElement currencySelector;
 
     @FindBy(linkText = "Car rentals")
-    private WebElement carRentButton;
+    private Button carRentButton;
 
     @FindBy(linkText = "Flights")
-    private WebElement flightsButton;
+    private Button flightsButton;
 
     public HomePage() {
-        PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
+        PageFactory.initElements(new CustomFieldDecorator(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance()), this);
     }
 
     private String getLanguageTriggerLocator(Language language) {
