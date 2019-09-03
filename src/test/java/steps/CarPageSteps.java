@@ -1,7 +1,7 @@
 package steps;
 
-import cucumber.api.DataTable;
 import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.NoSuchElementException;
 import pages.car_rent.CarPage;
 import pages.date.DateCalendarPage;

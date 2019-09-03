@@ -2,7 +2,6 @@ Feature: User selects the existing destination
   As a booking.com user I can set existing destination
   So Application should suggest this destination on help panel
 
-  @ForRun
   Scenario Outline: Existing Start point is selected for flight
     Given I navigate to "<url>"
     When I select language "<language>" on Home page
