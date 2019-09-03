@@ -49,11 +49,11 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
         return null;
     }
 
-    private <T>T createInstance(Class<T> klass, WebElement element) {
+    private <T> T createInstance(Class<T> klass, WebElement element) {
         try {
             return (T)klass.getConstructor(WebElement.class).newInstance(element);
         } catch (Exception e) {
-            throw new AssertionError("WebElement can't be represented as " + klass);
+            throw new RuntimeException("WebElement can't be represented as " + klass);
         }
     }
 

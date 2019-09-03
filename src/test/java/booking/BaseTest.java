@@ -1,7 +1,5 @@
 package booking;
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import steps.CarPageSteps;
 import steps.HomePageSteps;
 import utils.PropertiesUtil;
@@ -17,16 +15,6 @@ public class BaseTest {
 
     protected PropertiesUtil properties = new PropertiesUtil("src//test/resources/config.properties");
 
-    @BeforeTest
-    public void beforeTest(){
-        instance = WebDriverSingletoneInstance.getWebDriverSingletoneInstance();
-    }
-
-    @AfterTest
-    public void closeDriver(){
-        instance.closeDriver();
-    }
-
     public BaseTest() {
 
     }
@@ -36,7 +24,5 @@ public class BaseTest {
     }
 
 
-    public void navigateTo(String url) {
-        instance.getWebDriverInstance().get(url);
-    }
+
 }

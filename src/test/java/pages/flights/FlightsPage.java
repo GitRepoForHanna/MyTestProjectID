@@ -9,6 +9,8 @@ import pages.BasePage;
 import utils.webdriver.Wait;
 import utils.webdriver.WebDriverSingletoneInstance;
 
+import java.util.List;
+
 public class FlightsPage extends BasePage {
 
     @FindBy(xpath = "//input[@aria-label='Flight origin input' and @placeholder='From where?']")
@@ -38,6 +40,10 @@ public class FlightsPage extends BasePage {
         fromWhereInput.sendKeys(locationFrom);
     }
 
+    public String getWhereFromPoint() {
+        return fromWhereInput.getText();
+    }
+
     private WebElement getLocationOptionElement(String option) {
         String locator = String.format(locationOptionXpath, option);
         return WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(locator));
@@ -58,6 +64,26 @@ public class FlightsPage extends BasePage {
     public void setWhereToPoint(String locationTo) {
         toWhereInput.clear();
         toWhereInput.sendKeys(locationTo);
+    }
+
+    private List<WebElement> getLocationOptionElements() {
+        return getDriver().findElements(By.xpath(locationOptionXpath));
+    }
+
+    public boolean isOptionAvailable(String option, boolean expectedAvailability) {
+        if(expectedAvailability) {
+            Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(locationPanel));
+       }
+        try {
+            if (locationPanel.isDisplayed()) {
+                WebElement optionElement = getLocationOptionElement(option);
+                return getLocationOptionElements().contains(optionElement);
+            }
+            return false;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
 }

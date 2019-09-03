@@ -30,8 +30,30 @@ public class CarPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'xp__dates__checkout')]//button[@aria-label=\"Open calendar\"]")
     private WebElement dateToInput;
 
+    @FindBy(xpath = "//div[@class='c2-calendar-header' and text()='Check-in']")
+    private WebElement checkInDatePickerHeader;
+
+    @FindBy(xpath = "//div[@class='c2-calendar-header' and text()='Check-out']")
+    private WebElement checkOutDatePickerHeader;
+
     public CarPage() {
         PageFactory.initElements(new CustomFieldDecorator(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance()), this);
+    }
+
+//    public boolean isCheckInDatePickerAvailable() {
+//        return WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().
+//    }
+
+    public boolean isCheckInDatePickerEnabled() {
+        return checkInDatePickerHeader.isEnabled();
+    }
+
+//    public boolean isCheckOutDatePickerAvailable() {
+//        return checkOutDatePickerHeader.isDisplayed();
+//    }
+
+    public boolean isCheckOutDatePickerEnabled() {
+        return checkOutDatePickerHeader.isEnabled();
     }
 
     public void setDestination(String destination) {

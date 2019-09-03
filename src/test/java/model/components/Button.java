@@ -12,8 +12,8 @@ public class Button extends Element{
     }
 
     public void click() {
-        Wait.getWebdriverWait().until(ExpectedConditions.elementToBeClickable(element));
-        HighlightElement.highlightElement(element);
-        element.click();
+            Wait.getWebdriverWait().until(ExpectedConditions.elementToBeClickable(element));
+            HighlightElement.highlightElement(element);
+            element.click();
     }
 }

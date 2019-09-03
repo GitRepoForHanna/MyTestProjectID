@@ -1,15 +1,11 @@
 package booking.dataprovider;
 
-import org.testng.annotations.DataProvider;
 import utils.dataProviders.CarRentingData;
 import utils.dataProviders.CarRentingDataBuilder;
 
 public class CarRentingDataProvider {
 
-    public CarRentingDataProvider() {
-    }
-
-    @DataProvider(name = "CarRentingData")
+//    @DataProvider(name = "CarRentingData")
     public static Object[] getData() {
         return new CarRentingData[]{
                 new CarRentingDataBuilder()
