@@ -1,5 +1,7 @@
 package steps;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
@@ -10,22 +12,28 @@ import utils.ScreenShot;
 import utils.webdriver.WebDriverSingletoneInstance;
 
 public class BaseSteps {
-//
-//    private WebDriverSingletoneInstance instance;
-//    private BasePage previousPage;
-//    private BasePage currentPage;
-//
+
+    private WebDriverSingletoneInstance instance;
+    private BasePage previousPage;
+    private BasePage currentPage;
+
 //    public BasePage getCurrentPage() {
 //        return currentPage;
 //    }
 
-    @Rule
-    TestRule listener = new TestWatcher() {
-        @Override
-        protected void failed(Throwable e, Description description) {
-            ScreenShot.getScreenShot(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(),description.getMethodName());
-            super.failed(e, description);
-        }
-    };
 
+    public BaseSteps() {
+        this.instance = WebDriverSingletoneInstance.getWebDriverSingletoneInstance();
+    }
+
+    @Before
+    public void setUp() {
+
+    }
+
+    @After
+    public void closeInstance() {
+        System.out.println("After test - close driver");
+        instance.closeDriver();
+    }
 }

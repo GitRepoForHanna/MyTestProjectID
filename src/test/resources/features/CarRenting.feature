@@ -16,8 +16,7 @@ Feature: Search car for renting
        | https://www.booking.com |
 
 
-
-  Scenario Outline: Car Renting 2
+ Scenario Outline: Car Renting 2
     Given I navigate to "<url>"
     When I navigate to Car Renting page
     And I set destination "<destination>" on Car Renting page
