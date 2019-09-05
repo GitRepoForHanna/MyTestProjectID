@@ -1,7 +1,6 @@
 package pages.date;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -78,7 +77,7 @@ public class DateCalendarPage extends BasePage {
                 }
             }
             else {
-                Logger.getLogger(this.getClass().getName()).error("The calendar isn't visible");
+//                Logger.getLogger(this.getClass().getName()).error("The calendar isn't visible");
             }
         }
         getDateTableCell(getDateTableFromCellLocator(date)).click();

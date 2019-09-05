@@ -1,6 +1,5 @@
 package utils;
 
-import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -24,7 +23,7 @@ public class ScreenShotListener implements ITestListener {
             ScreenShot.getScreenShot(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), result.getName().toString());
         }
         catch (Exception ex) {
-            Logger.getLogger(result.getClass().getName()).error(ex);
+//            LOGGER.getLogger(result.getClass().getName()).error(ex);
         }
     }
 

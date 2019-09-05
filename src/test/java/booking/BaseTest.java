@@ -8,6 +8,9 @@ import utils.PropertiesUtil;
 import utils.webdriver.WebDriverSingletoneInstance;
 import java.util.ResourceBundle;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class BaseTest {
 
     protected static final String URL = "https://www.booking.com";
@@ -16,6 +19,7 @@ public class BaseTest {
     private WebDriverSingletoneInstance instance;
 
     protected PropertiesUtil properties = new PropertiesUtil("src//test/resources/config.properties");
+    public static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
 
     @BeforeTest
     public void beforeTest(){

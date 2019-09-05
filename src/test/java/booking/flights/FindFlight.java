@@ -16,12 +16,14 @@ public class FindFlight extends BaseTest {
     @Test(groups = "Flight")
     @Description("Navigate to booking.com page")
     public void navigateToBooking() {
+        LOGGER.info("Navigate to booking.com page");
         navigateTo(properties.getProperty("booking.com.url"));
     }
 
     @Test(groups = "Flight")
     @Description("Change Language")
     public void changeLanguage() {
+        LOGGER.info("Change Language");
         navigateTo(properties.getProperty("booking.com.url"));
         homePageSteps.selectLanguage(Language.ITALIA);
     }
@@ -29,6 +31,7 @@ public class FindFlight extends BaseTest {
     @Test(groups = "Flight")
     @Description("Select the flight for 1 week")
     public void findWeekFlight() throws InterruptedException {
+        LOGGER.info("Select the flight for 1 week");
         navigateTo(getResourceBundle("config").getString("booking.com.url"));
         homePageSteps.clickFlightsButton();
         flightsPageSteps.setWhereFromPoint("Izmir", "Chios (JKH)");
@@ -39,6 +42,7 @@ public class FindFlight extends BaseTest {
     @Test(dataProvider = "NotExistingLocation", groups = "Flight")
     @Description("Selecting not existing location from for flight. Constantly failing scenario.")
     public void findFlightWithNotExistingLocation(String shortLocation, String fullLocation) {
+        LOGGER.info("Selecting not existing location from for flight. Constantly failing scenario.");
         navigateTo(properties.getProperty("booking.com.url"));
         homePageSteps.clickFlightsButton();
         flightsPageSteps.setWhereFromPoint(shortLocation, fullLocation);
