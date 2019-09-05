@@ -2,6 +2,7 @@ Feature: Search car for renting
   As a booking.com user I am able to find car for renting
   So I can set destination and date and get some cars are suggested
 
+  @ForRun
   Scenario Outline: Car Renting
     Given I navigate to "<url>"
     When I navigate to Car Renting page
@@ -15,7 +16,7 @@ Feature: Search car for renting
        | url                     |
        | https://www.booking.com |
 
-
+ @ForRun
  Scenario Outline: Car Renting 2
     Given I navigate to "<url>"
     When I navigate to Car Renting page

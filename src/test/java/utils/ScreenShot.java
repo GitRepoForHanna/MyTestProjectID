@@ -29,5 +29,5 @@ public class ScreenShot {
             Logger.getLogger(ScreenShot.class).error(e);
         }
         return null;
-    }
+}
 }

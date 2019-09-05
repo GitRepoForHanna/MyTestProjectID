@@ -4,9 +4,10 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.model.InitializationError;
 
-public class CustomerRunner extends Cucumber {
+import java.io.IOException;
 
-    public CustomerRunner(Class clazz) throws InitializationError {
+public class CustomerRunner extends Cucumber {
+    public CustomerRunner(Class clazz) throws InitializationError, IOException {
         super(clazz);
     }
 

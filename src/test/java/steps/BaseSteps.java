@@ -2,13 +2,7 @@ package steps;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
 import pages.*;
-import utils.ScreenShot;
 import utils.webdriver.WebDriverSingletoneInstance;
 
 public class BaseSteps {
