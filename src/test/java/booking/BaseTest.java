@@ -1,15 +1,12 @@
 package booking;
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.apache.log4j.Logger;
+import org.testng.annotations.*;
 import steps.CarPageSteps;
 import steps.HomePageSteps;
 import utils.PropertiesUtil;
 import utils.webdriver.WebDriverSingletoneInstance;
 import java.util.ResourceBundle;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class BaseTest {
 
@@ -19,7 +16,6 @@ public class BaseTest {
     private WebDriverSingletoneInstance instance;
 
     protected PropertiesUtil properties = new PropertiesUtil("src//test/resources/config.properties");
-    public static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
 
     @BeforeTest
     public void beforeTest(){
@@ -28,6 +24,7 @@ public class BaseTest {
 
     @AfterTest
     public void closeDriver(){
+        Logger.getLogger(BaseTest.class).info("Close Driver");
         instance.closeDriver();
     }
 
@@ -41,6 +38,7 @@ public class BaseTest {
 
 
     public void navigateTo(String url) {
+        Logger.getLogger(BaseTest.class).info(String.format("Navigation to %s", url));
         instance.getWebDriverInstance().get(url);
     }
 }

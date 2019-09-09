@@ -1,7 +1,7 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
 
-        <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
             <param name="Target" value="System.out"/>
             <layout class="org.apache.log4j.PatternLayout">
                 <param name="ConversionPattern" value="%t thread -  %-5p %C{1}:%L - %m%n"/>
@@ -15,10 +15,9 @@
         </appender>
 
         <root>
-            <level value="info">
-                <AppenderRef ref="ConsoleAppender"/>
-                <AppenderRef ref="ReportPortalAppender"/>
-            </level>
+            <level value="DEBUG"/>
+            <appender-ref ref="ConsoleAppender"/>
+            <appender-ref ref="ReportPortalAppender"/>
         </root>
 
     </log4j:configuration>

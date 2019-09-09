@@ -9,7 +9,16 @@ import pages.BasePage;
 import utils.webdriver.Wait;
 import utils.webdriver.WebDriverSingletoneInstance;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
 public class CarPage extends BasePage {
+
+    private static final Predicate<WebElement> IS_ELEMENT_DISPLAYED = element -> element.isDisplayed();
+    private static final Consumer<WebElement> CLICK_ELEMENT = element -> element.click();
 
     @FindBy(id = "ss_origin")
     private WebElement destinationInput;
@@ -27,6 +36,12 @@ public class CarPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'xp__dates__checkout')]//button[@aria-label=\"Open calendar\"]")
     private WebElement dateToInput;
+
+    @FindBy(xpath = "//div[@data-calendar2-type='checkin']/following-sibling::div[@class='c2-calendar']")
+    private WebElement checkInCalendarPanel;
+
+    @FindBy(xpath = "//div[@data-calendar2-type='checkout']/following-sibling::div[@class='c2-calendar']")
+    private WebElement checkOutCalendarPanel;
 
     public CarPage() {
         PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
@@ -58,11 +73,26 @@ public class CarPage extends BasePage {
             WebElement element = getDestinationOptionElement(option);
             Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(element));
             element.click();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             throw new RuntimeException(String.format("Destination option %s was not founded", option));
         }
+    }
 
+
+    public void expandDatePicker(WebElement datePicker, WebElement dateInput) {
+        if (!IS_ELEMENT_DISPLAYED.test(datePicker)) {
+            CLICK_ELEMENT.accept(dateInput);
+        }
+    }
+
+
+
+    public void expandCheckInCalendar() {
+        expandDatePicker(checkInCalendarPanel, dateFromInput);
+    }
+
+    public void expandCheckOutCalendar() {
+        expandDatePicker(checkOutCalendarPanel, dateToInput);
     }
 
 }

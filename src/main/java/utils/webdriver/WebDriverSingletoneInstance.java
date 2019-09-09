@@ -37,7 +37,10 @@ public class WebDriverSingletoneInstance {
     }
 
     public WebDriver getWebDriverInstance() {
-        return getWebDriverSingletoneInstance().webDriver;
+        if(((ChromeDriver)webDriver).getSessionId() == null){
+            initDriver();
+        }
+        return webDriver;
     }
 
     public void closeDriver() {
