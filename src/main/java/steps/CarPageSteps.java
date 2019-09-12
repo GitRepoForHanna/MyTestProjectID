@@ -1,5 +1,6 @@
 package steps;
 
+import com.google.inject.Inject;
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import pages.car_rent.CarPage;

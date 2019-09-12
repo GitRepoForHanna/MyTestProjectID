@@ -4,14 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 import utils.webdriver.Wait;
 import utils.webdriver.WebDriverSingletoneInstance;
-
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -27,6 +22,9 @@ public class CarPage extends BasePage {
 
     @FindBy(xpath = "//ul[@role='listbox' and @aria-label='List of suggested destinations ']")
     private WebElement suggestedDestinationsPanel;
+
+    @FindBy(xpath = "//ul[@role='listbox' and @aria-label='Wrong List of suggested destinations ']")
+    private WebElement suggestedDestinationsPanelWrong;
 
     @FindBy(className = "sb-searchbox__button")
     private WebElement searchButton;
@@ -69,9 +67,9 @@ public class CarPage extends BasePage {
 
     public void selectDestinationOption(String option) {
         try {
-            Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(suggestedDestinationsPanel));
+            Wait.waitParticularState(() -> suggestedDestinationsPanel.isDisplayed());
             WebElement element = getDestinationOptionElement(option);
-            Wait.getWebdriverWait().until(ExpectedConditions.visibilityOf(element));
+            Wait.waitParticularState(() -> element.isDisplayed());
             element.click();
         } catch (Exception ex) {
             throw new RuntimeException(String.format("Destination option %s was not founded", option));
@@ -85,8 +83,6 @@ public class CarPage extends BasePage {
         }
     }
 
-
-
     public void expandCheckInCalendar() {
         expandDatePicker(checkInCalendarPanel, dateFromInput);
     }
@@ -94,5 +90,4 @@ public class CarPage extends BasePage {
     public void expandCheckOutCalendar() {
         expandDatePicker(checkOutCalendarPanel, dateToInput);
     }
-
 }

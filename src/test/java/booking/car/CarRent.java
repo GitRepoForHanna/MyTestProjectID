@@ -14,7 +14,7 @@ public class CarRent extends BaseTest {
 
     @Test(dataProvider = "CarRentingData", dataProviderClass = CarRentingDataProvider.class, groups = "Car")
     @Description("Test car renting opportunity")
-    public void RentCarInLondon(CarRentingData data) throws InterruptedException, NoSuchMethodException {
+    public void RentCarInLondon(CarRentingData data) throws InterruptedException {
 //        navigateTo(properties.getProperty("booking.com.url"));
         navigateTo(getResourceBundle("config").getString("booking.com.url"));
         homePageSteps.selectLanguage(Language.UK);
@@ -24,6 +24,11 @@ public class CarRent extends BaseTest {
         carPageSteps.setRentingDateTo(LocalDate.of(data.getCheckOutYear(),data.getCheckOutMonth(),data.getCheckOutDay()));
         carPageSteps.clickSearchButton();
         Thread.sleep(5000);
+    }
+
+    @Test
+    public void BookingComExceptionTest() {
+        navigateToBookingCom();
     }
 
 }

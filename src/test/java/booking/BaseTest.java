@@ -5,7 +5,9 @@ import org.testng.annotations.*;
 import steps.CarPageSteps;
 import steps.HomePageSteps;
 import utils.PropertiesUtil;
+import utils.exceptions.ScenarioException;
 import utils.webdriver.WebDriverSingletoneInstance;
+
 import java.util.ResourceBundle;
 
 public class BaseTest {
@@ -18,12 +20,12 @@ public class BaseTest {
     protected PropertiesUtil properties = new PropertiesUtil("src//test/resources/config.properties");
 
     @BeforeTest
-    public void beforeTest(){
+    public void beforeTest() {
         instance = WebDriverSingletoneInstance.getWebDriverSingletoneInstance();
     }
 
     @AfterTest
-    public void closeDriver(){
+    public void closeDriver() {
         Logger.getLogger(BaseTest.class).info("Close Driver");
         instance.closeDriver();
     }
@@ -33,12 +35,28 @@ public class BaseTest {
     }
 
     public ResourceBundle getResourceBundle(String resourceBundleName) {
-        return  ResourceBundle.getBundle(resourceBundleName);
+        return ResourceBundle.getBundle(resourceBundleName);
     }
 
 
     public void navigateTo(String url) {
         Logger.getLogger(BaseTest.class).info(String.format("Navigation to %s", url));
-        instance.getWebDriverInstance().get(url);
+        try {
+            instance.getWebDriverInstance().get(url);
+            if (!url.equalsIgnoreCase("https://www.booking.com")) {
+                throw new ScenarioException("You are navigating to the wrong place!");
+            }
+        } catch (ScenarioException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void navigateToBookingCom() {
+        Logger.getLogger(BaseTest.class).info(String.format("Navigation to Booking.com"));
+            String url = getResourceBundle("config").getString("wrong.url");
+            if (!url.equalsIgnoreCase("https://www.booking.com")) {
+                throw new ScenarioException("You are navigating to the wrong place!");
+            }
+            instance.getWebDriverInstance().get(url);
     }
 }
