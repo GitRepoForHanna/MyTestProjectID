@@ -5,14 +5,9 @@ import io.qameta.allure.Description;
 import org.apache.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import steps.FlightsPageSteps;
-import steps.HomePageSteps;
 import utils.Language;
 
 public class FindFlight extends BaseTest {
-
-    HomePageSteps homePageSteps = new HomePageSteps();
-    FlightsPageSteps flightsPageSteps = new FlightsPageSteps();
 
     @Test(groups = "Flight")
     @Description("Navigate to booking.com page")

@@ -1,15 +1,21 @@
 package steps;
 
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import pages.car_rent.CarPage;
 import pages.date.DateCalendarPage;
+import utils.dependency_injection.ConfigurationModule;
 
 
 import java.time.LocalDate;
 
 public class CarPageSteps extends BaseSteps {
+
+    public CarPageSteps() {
+    }
 
     @Step("Set the checkIn point for car renting: {0} - destination in short, {1} - full name of destination")
     public void setDestination(String destinationShort, String destination) {

@@ -39,6 +39,7 @@ public class HomePage extends BasePage {
     }
 
     public void clickSelectLanguage() {
+        Wait.waitParticularState(() -> languageSelector.isEnabled());
         languageSelector.click();
     }
 

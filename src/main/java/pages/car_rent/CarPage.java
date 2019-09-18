@@ -1,5 +1,6 @@
 package pages.car_rent;
 
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +27,7 @@ public class CarPage extends BasePage {
     @FindBy(xpath = "//ul[@role='listbox' and @aria-label='Wrong List of suggested destinations ']")
     private WebElement suggestedDestinationsPanelWrong;
 
-    @FindBy(className = "sb-searchbox__button")
+    @FindBy(xpath = "//span[text()='Search']")
     private WebElement searchButton;
 
     @FindBy(xpath = "//div[contains(@class,'xp__dates__checkin')]//button[@aria-label=\"Open calendar\"]")
@@ -41,6 +42,7 @@ public class CarPage extends BasePage {
     @FindBy(xpath = "//div[@data-calendar2-type='checkout']/following-sibling::div[@class='c2-calendar']")
     private WebElement checkOutCalendarPanel;
 
+    @Inject
     public CarPage() {
         PageFactory.initElements(WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance(), this);
     }
@@ -50,6 +52,7 @@ public class CarPage extends BasePage {
     }
 
     public void clickSearchButton() {
+        Wait.waitParticularState(() -> searchButton.isDisplayed());
         searchButton.click();
     }
 
@@ -75,7 +78,6 @@ public class CarPage extends BasePage {
             throw new RuntimeException(String.format("Destination option %s was not founded", option));
         }
     }
-
 
     public void expandDatePicker(WebElement datePicker, WebElement dateInput) {
         if (!IS_ELEMENT_DISPLAYED.test(datePicker)) {

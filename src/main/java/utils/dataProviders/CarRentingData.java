@@ -10,15 +10,40 @@ public class CarRentingData {
     private int checkInDay;
     private int checkOutDay;
 
-    public CarRentingData(CarRentingDataBuilder builder) {
-        this.shortDestination = builder.getShortDestination();
-        this.destination = builder.getDestination();
-        this.checkInYear = builder.getCheckInYear();
-        this.checkInMonth = builder.getCheckInMonth();
-        this.checkInDay = builder.getCheckInDay();
-        this.checkOutYear = builder.getCheckOutYear();
-        this.checkOutMonth = builder.getCheckOutMonth();
-        this.checkOutDay = builder.getCheckOutDay();
+    public CarRentingData() {
+
+    }
+
+    public void setShortDestination(String shortDestination) {
+        this.shortDestination = shortDestination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public void setCheckInYear(int checkInYear) {
+        this.checkInYear = checkInYear;
+    }
+
+    public void setCheckOutYear(int checkOutYear) {
+        this.checkOutYear = checkOutYear;
+    }
+
+    public void setCheckInMonth(int checkInMonth) {
+        this.checkInMonth = checkInMonth;
+    }
+
+    public void setCheckOutMonth(int checkOutMonth) {
+        this.checkOutMonth = checkOutMonth;
+    }
+
+    public void setCheckInDay(int checkInDay) {
+        this.checkInDay = checkInDay;
+    }
+
+    public void setCheckOutDay(int checkOutDay) {
+        this.checkOutDay = checkOutDay;
     }
 
     public String getShortDestination() {

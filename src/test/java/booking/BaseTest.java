@@ -1,20 +1,33 @@
 package booking;
 
+import com.google.inject.Inject;
 import org.apache.log4j.Logger;
 import org.testng.annotations.*;
 import steps.CarPageSteps;
+import steps.CarRentSearchResultSteps;
+import steps.FlightsPageSteps;
 import steps.HomePageSteps;
 import utils.PropertiesUtil;
+import utils.dependency_injection.ConfigurationModule;
 import utils.exceptions.ScenarioException;
 import utils.webdriver.WebDriverSingletoneInstance;
 
 import java.util.ResourceBundle;
 
+@Guice(modules = {ConfigurationModule.class})
 public class BaseTest {
 
     protected static final String URL = "https://www.booking.com";
-    protected HomePageSteps homePageSteps = new HomePageSteps();
-    protected CarPageSteps carPageSteps = new CarPageSteps();
+
+    @Inject
+    protected HomePageSteps homePageSteps;
+    @Inject
+    protected CarPageSteps carPageSteps;
+    @Inject
+    protected FlightsPageSteps flightsPageSteps;
+    @Inject
+    protected CarRentSearchResultSteps carRentSearchResultSteps;
+
     private WebDriverSingletoneInstance instance;
 
     protected PropertiesUtil properties = new PropertiesUtil("src//test/resources/config.properties");
@@ -41,14 +54,7 @@ public class BaseTest {
 
     public void navigateTo(String url) {
         Logger.getLogger(BaseTest.class).info(String.format("Navigation to %s", url));
-        try {
-            instance.getWebDriverInstance().get(url);
-            if (!url.equalsIgnoreCase("https://www.booking.com")) {
-                throw new ScenarioException("You are navigating to the wrong place!");
-            }
-        } catch (ScenarioException ex) {
-            ex.printStackTrace();
-        }
+        instance.getWebDriverInstance().get(url);
     }
 
     public void navigateToBookingCom() {

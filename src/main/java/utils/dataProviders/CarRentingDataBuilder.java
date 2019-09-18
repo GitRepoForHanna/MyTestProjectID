@@ -2,91 +2,53 @@ package utils.dataProviders;
 
 public class CarRentingDataBuilder {
 
-    private String shortDestination;
-    private String destination;
-    private int checkInYear;
-    private int checkOutYear;
-    private int checkInMonth;
-    private int checkOutMonth;
-    private int checkInDay;
-    private int checkOutDay;
+    private CarRentingData carRentingData;
 
     public CarRentingDataBuilder() {
+        carRentingData = new CarRentingData();
     }
 
-    public String getShortDestination() {
-        return shortDestination;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public int getCheckInYear() {
-        return checkInYear;
-    }
-
-    public int getCheckOutYear() {
-        return checkOutYear;
-    }
-
-    public int getCheckInMonth() {
-        return checkInMonth;
-    }
-
-    public int getCheckOutMonth() {
-        return checkOutMonth;
-    }
-
-    public int getCheckInDay() {
-        return checkInDay;
-    }
-
-    public int getCheckOutDay() {
-        return checkOutDay;
-    }
-
-    public CarRentingDataBuilder shortDestination(String shortDestination) {
-        this.shortDestination = shortDestination;
+    public CarRentingDataBuilder withShortDestination(String shortDestination) {
+        carRentingData.setShortDestination(shortDestination);
         return this;
     }
 
-    public CarRentingDataBuilder fullDestination(String fullDestination) {
-        this.destination = fullDestination;
+    public CarRentingDataBuilder withFullDestination(String fullDestination) {
+        carRentingData.setDestination(fullDestination);
         return this;
     }
 
-    public CarRentingDataBuilder checkInYear(int checkInYear) {
-        this.checkInYear = checkInYear;
+    public CarRentingDataBuilder withCheckInYear(int checkInYear) {
+        carRentingData.setCheckInYear(checkInYear);
         return this;
     }
 
-    public CarRentingDataBuilder checkOutYear(int checkOutYear) {
-        this.checkOutYear = checkOutYear;
+    public CarRentingDataBuilder withCheckOutYear(int checkOutYear) {
+        carRentingData.setCheckOutYear(checkOutYear);
         return this;
     }
 
-    public CarRentingDataBuilder checkInMonth(int checkInMonth) {
-        this.checkInMonth = checkInMonth;
+    public CarRentingDataBuilder withCheckInMonth(int checkInMonth) {
+        carRentingData.setCheckInMonth(checkInMonth);
         return this;
     }
 
-    public CarRentingDataBuilder checkOutMonth(int checkOutMonth) {
-        this.checkOutMonth = checkOutMonth;
+    public CarRentingDataBuilder withCheckOutMonth(int checkOutMonth) {
+        carRentingData.setCheckOutMonth(checkOutMonth);
         return this;
     }
 
-    public CarRentingDataBuilder checkInDay(int checkInDay) {
-        this.checkInDay = checkInDay;
+    public CarRentingDataBuilder withCheckInDay(int checkInDay) {
+        carRentingData.setCheckInDay(checkInDay);
         return this;
     }
 
-    public CarRentingDataBuilder getCheckOutDay(int checkOutDay) {
-        this.checkOutDay = checkOutDay;
+    public CarRentingDataBuilder withCheckOutDay(int checkOutDay) {
+        carRentingData.setCheckOutDay(checkOutDay);
         return this;
     }
 
     public CarRentingData build() {
-        return new CarRentingData(this);
+        return carRentingData;
     }
 }

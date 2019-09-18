@@ -7,6 +7,9 @@ import pages.homePage.HomePage;
 
 public class HomePageSteps extends BaseSteps{
 
+    public HomePageSteps() {
+    }
+
     @Step("Select Language {0}")
     public void selectLanguage(Language language) {
         Logger.getLogger(HomePageSteps.class).info(String.format("Set language %s on Home page", language));

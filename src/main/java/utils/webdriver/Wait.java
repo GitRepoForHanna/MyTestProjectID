@@ -1,5 +1,5 @@
 package utils.webdriver;
-import com.google.common.collect.ImmutableMap;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -8,16 +8,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import utils.exceptions.ScenarioException;
 
-import java.lang.reflect.Method;
 import java.time.Duration;
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeoutException;
-import java.util.stream.Stream;
+
 
 public class Wait {
 
     public static final long TIMEOUT = 15;
     public static final long POLLING_TIME = 100;
+
 
     public Wait() {
 
@@ -76,14 +75,10 @@ public class Wait {
                 });
     }
 
-//    public static void main(String[] args) {
-//        fluentWaitParticularState(() -> WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath("dfgdfg")).isDisplayed(), TIMEOUT, POLLING_TIME);
+//    @Test
+//    public void asdasd() {
+//        String elementXPath = "dfgdfg";
+//            fluentWaitParticularState(() -> WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(elementXPath)).isDisplayed(), 5, 500);
 //    }
-
-    @Test
-    public void asdasd() {
-        String elementXPath = "dfgdfg";
-            fluentWaitParticularState(() -> WebDriverSingletoneInstance.getWebDriverSingletoneInstance().getWebDriverInstance().findElement(By.xpath(elementXPath)).isDisplayed(), 5, 500);
-    }
 
 }

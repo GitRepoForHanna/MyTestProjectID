@@ -6,6 +6,9 @@ import pages.flights.FlightsPage;
 
 public class FlightsPageSteps extends BaseSteps {
 
+    public FlightsPageSteps() {
+    }
+
     @Step("Type location from: {0} - in short, {1} - full location name")
     public void setWhereFromPoint(String shortNameLocation, String fullNameLocation) {
         Logger.getLogger(FlightsPageSteps.class).info(String.format("Set start point location %s on Flight page", fullNameLocation));
